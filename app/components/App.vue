@@ -48,28 +48,10 @@
 const timerModule = require("tns-core-modules/timer")
 const appSettings = require("application-settings")
 const sound = require('nativescript-sound')
-// const audio = require('nativescript-audio');
-// const player = new audio.TNSPlayer();
 import * as app from 'tns-core-modules/application'
 import * as platform from 'tns-core-modules/platform'
 import * as color from 'tns-core-modules/color'
  
-   
-// const playerOptions = {
-//   audioFile: '~/assets/audio/cueblip.wav',
-//   loop: false,
-//   completeCallback: function() {
-//     console.log('finished playing');
-//   },
-//   errorCallback: function(errorObject) {
-//     console.log(JSON.stringify(errorObject));
-//   },
-//   infoCallback: function(args) {
-//     console.log(JSON.stringify(args));
-//   }
-// };
-
-
 function clock(){
         let date, hours, minutes, seconds, hourString, minuteString, secondString
             date = new Date()
@@ -160,14 +142,10 @@ function counter(framerate){
         scene: 1,
         shot: 1,
         take: 1,
-        // player: player,
         stopButtonText:'stop',
         framerate: appSettings.getString("framerate") || '24',
-        // playerOptions: playerOptions,
         syncFrame: `collapsed`,
         blipSound: sound.create('~/assets/audio/cueblip.wav')
-       
-       
       }
     },
     mounted() {
@@ -241,10 +219,6 @@ function counter(framerate){
               setTimeout(()=>{
                 this.syncFrame = "visible"
                 this.blipSound.play()
-                // this.player
-                // .playFromFile({
-                //  audioFile: '~/assets/audio/cueblip.wav',
-                // loop: false})
                 setTimeout(()=> {
                  this.syncFrame = "collapsed"
                 }, 50 )
@@ -290,115 +264,4 @@ function counter(framerate){
 </script>
 
 <style scoped  lang="scss">
-
-    .top-time {
-        padding: 10;
-        justify-content: space-between;
-        align-content: center;
-    }
-    .grid {
-        padding-left: 10;
-        padding-right: 10;
-        padding-bottom: 10;    
-    }
-    .timecode, .clock {
-      font-family: 'Digital';
-    }
-    .clock {
-        color: #fff;
-        margin-right: 15;
-        align-self: center;
-        
-    }
-    .timecode {
-        font-size: 45;
-        color:rgb(15, 174, 202); 
-    }
-
-    .message {
-        vertical-align: center;
-        text-align: center;
-        font-size: 20;
-        color: #fff;
-    }
-    .page {
-        background-color: #333;
-    }
-    .button {
-        color: #fff;
-        
-    }
-    .big-number {
-        font-size: 34;
-        padding: 0;
-    }
-    .button.stepper {
-        width: 40%;
-        height: 40%;
-        font-size: 20;
-        border: solid;
-        border-width: 1;
-        border-color: #fff;
-        border-radius: 2;
-        padding: -6; // android
-        
-    }
-    .steppergroup {
-        flex-direction: row;
-        justify-content: space-around;
-    }
-    .top-bg{
-        width: 100%;
-        margin-top: -30;
-    }
-    .meta .meta-content {
-        margin-left: 10;
-        padding-left: 15;
-    }
-    .meta {
-        color: rgb(155, 155, 155);
-        font-size: 10;
-    }
-    .meta-content {
-        color: #fff;
-        font-size: 12;
-        background-color: #333;
-        padding: 1 0; // necessary for visibility on android
-
-    }
-   
-    .mark {
-        background-color:rgb(15, 174, 202);
-        border: none;
-        height: 31;
-        padding: 1 ;//android
-    }
-    .stop {
-        background-color: rgb(255, 78, 78);
-        border: none;
-        border-radius: 0;
-        height: 31;
-        padding: 1 ;//android
-    }
-    .label {
-        padding-bottom: 20;
-    }
-    .cog {
-        color: rgb(133, 133, 133);
-        font-size: 25;
-        text-align: right;
-        margin-right: 20;
-        margin-top: 20;
-    }
-    .fpsLabel {
-        color:#fff;
-        text-align: right;
-        justify-content:flex-end;
-        padding: 0;
-    }
-    .fpsLabel Label {
-        margin-right: 15;
-        margin-left: 2;
-    }
-
 </style>
