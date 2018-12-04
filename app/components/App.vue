@@ -48,85 +48,64 @@
 const timerModule = require("tns-core-modules/timer")
 const appSettings = require("application-settings")
 const sound = require('nativescript-sound')
+// const timecodeTimer = require('~/assets/scripts/timecodeTimer')
 import * as app from 'tns-core-modules/application'
 import * as platform from 'tns-core-modules/platform'
 import * as color from 'tns-core-modules/color'
- 
-function clock(){
-        let date, hours, minutes, seconds, hourString, minuteString, secondString
-            date = new Date()
-            hours = date.getHours()
-            minutes = date.getMinutes()
-            seconds = date.getSeconds()
-            if (parseInt(seconds, 10) < 10) {
-                secondString = `0${seconds}`
-            } else {
-                secondString = date.getSeconds()
-            }
-            if (parseInt(minutes, 10) < 10) {
-                minuteString = `0${minutes}`
-            } else {
-                 minuteString = date.getMinutes()
-            }
-            if (parseInt(hours) > 12){
-                hourString = `${hours-12}`
-            } else {
-                hourString = date.getHours()
-            }
-            return `${hourString}:${minuteString}`
+import clock from '~/assets/scripts/clock'
+import timecodeTimer from '~/assets/scripts/timecodeTimer'
 
-        }
-let fr, hours, minutes, seconds, frames
-hours = 0
-minutes = 0
-seconds = 0
-frames = 0      
-function counter(framerate){
-    let frameString, secondString, minuteString, hourString
-    if (frames < framerate ){
+// let fr, hours, minutes, seconds, frames
+// hours = 0
+// minutes = 0
+// seconds = 0
+// frames = 0      
+// function counter(framerate){
+//     let frameString, secondString, minuteString, hourString
+//     if (frames < framerate ){
         
-    frames++
+//     frames++
         
-    } else if (frames === framerate){
-        seconds ++
-        frames = 0
-    }
-    if (seconds === 60) {
-        seconds = 0
-        minutes ++
-    }
-    if (minutes === 60){
-        minutes = 0
-        hours ++
-    }
-    if (hours === 13){
-        hours = 1
-    }
+//     } else if (frames === framerate){
+//         seconds ++
+//         frames = 0
+//     }
+//     if (seconds === 60) {
+//         seconds = 0
+//         minutes ++
+//     }
+//     if (minutes === 60){
+//         minutes = 0
+//         hours ++
+//     }
+//     if (hours === 13){
+//         hours = 1
+//     }
 
-    if (parseInt(frames, 10) < 10) {
-                frameString = `0${frames}`
-        } else {
-            frameString = frames
-        }
-    if (parseInt(seconds, 10) < 10) {
-            secondString = `0${seconds}`
-        } else {
-            secondString = seconds
-        }
-            if (parseInt(minutes, 10) < 10) {
-                minuteString = `0${minutes}`
-            } else {
-                 minuteString = minutes
-            }
-            if (parseInt(hours, 10) < 10) {
-                hourString = `0${hours}`
-            } else {
-                 hourString = hours
-            }
+//     if (parseInt(frames, 10) < 10) {
+//                 frameString = `0${frames}`
+//         } else {
+//             frameString = frames
+//         }
+//     if (parseInt(seconds, 10) < 10) {
+//             secondString = `0${seconds}`
+//         } else {
+//             secondString = seconds
+//         }
+//             if (parseInt(minutes, 10) < 10) {
+//                 minuteString = `0${minutes}`
+//             } else {
+//                  minuteString = minutes
+//             }
+//             if (parseInt(hours, 10) < 10) {
+//                 hourString = `0${hours}`
+//             } else {
+//                  hourString = hours
+//             }
     
-    return `${hourString}:${minuteString}:${secondString}:${frameString}`
+//     return `${hourString}:${minuteString}:${secondString}:${frameString}`
 
-}
+// }
   export default {
     data() {
       return {
@@ -214,7 +193,7 @@ function counter(framerate){
             if (!this.timecode.running && this.stopButtonText === 'stop') {
                 this.timecode.running = true
                 this.timecode.id = timerModule.setInterval(()=>{
-                this.timecode.text = counter(parseInt(this.framerate))
+                this.timecode.text = timecodeTimer.counter(parseInt(this.framerate))
             },1000/parseInt(this.framerate))
               setTimeout(()=>{
                 this.syncFrame = "visible"
@@ -233,9 +212,9 @@ function counter(framerate){
                 clearInterval(this.timecode.id)
                 this.stopButtonText = "reset"
             } else if (!this.timecode.running && this.stopButtonText ==='reset'){
-                hours=0,minutes=0,seconds=0,frames=0
+                timecodeTimer.reset()
                 
-                this.timecode.text = '00:00:00:00',
+                this.timecode.text = timecodeTimer.timeString,
                 this.stopButtonText = "stop"
 
             }
@@ -263,5 +242,6 @@ function counter(framerate){
 
 </script>
 
-<style scoped  lang="scss">
+<style scoped lang="scss">
+
 </style>

@@ -1,5 +1,4 @@
- 
-let clock = function (){
+export default function clock(){
     let date, hours, minutes, seconds, hourString, minuteString, secondString
         date = new Date()
         hours = date.getHours()
@@ -23,5 +22,3 @@ let clock = function (){
         return `${hourString}:${minuteString}`
 
     }
-
-    export default clock;
