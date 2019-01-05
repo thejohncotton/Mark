@@ -11,7 +11,7 @@
 // @see https://docs.nativescript.org/ui/styling
 
 .top-time {
-  padding: 10;
+  // padding: 10;
   justify-content: space-between;
   align-content: center;
 }
@@ -21,17 +21,18 @@
   padding-bottom: 10;    
 }
 .timecode, .clock {
-font-family: 'Digital';
+font-family: 'Digital', 'unicode.digital';
 }
 .clock {
   color: #fff;
-  margin-right: 15;
+  margin-right: 20;
   align-self: center;
   
 }
 .timecode {
-  font-size: 45;
+  font-size: 85;
   color:rgb(15, 174, 202); 
+  margin-left: 50;
 }
 
 .message {
@@ -68,7 +69,7 @@ font-family: 'Digital';
 }
 .top-bg{
   width: 100%;
-  margin-top: -30;
+  margin-top: -5;
 }
 .meta .meta-content {
   margin-left: 10;
@@ -89,7 +90,7 @@ font-family: 'Digital';
 .mark {
   background-color:rgb(15, 174, 202);
   border: none;
-  height: 31;
+  height: 61;
   padding: 1 ;//android
 }
 .stop {
@@ -100,7 +101,7 @@ font-family: 'Digital';
   padding: 1 ; //android
 }
 .label {
-  padding-bottom: 20;
+  padding-bottom: 0;
 }
 .cog {
   color: rgb(133, 133, 133);
@@ -118,4 +119,50 @@ font-family: 'Digital';
 .fpsLabel Label {
   margin-right: 15;
   margin-left: 2;
+}
+// LARGE SCREENS
+.tablet {
+  .top-bg{
+    width: 100%;
+    margin-top: -30;
+  }
+  .mark, .stop {
+  height: 50;
+  font-size: 25;
+  margin-right: 15;
+  }
+  .top-time {
+    margin-top: 10;
+    margin-bottom: 20;
+  
+  }
+  .timecode {
+  font-size: 90;
+  }
+  .clock {
+    font-size: 30;
+  }
+  .big-number {
+    font-size: 70;
+  }
+  .meta {
+    font-size: 20
+  }
+  .meta-content {
+    font-size: 22;
+   
+  }
+  .meta, .meta-content {
+    margin-left: 10;
+  }
+  .fpsLabel {
+    font-size: 30;
+  }
+  .stepper {
+    font-size: 30;
+  }
+  .label {
+    font-size: 40;
+  }
+  
 }

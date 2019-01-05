@@ -1,6 +1,7 @@
 import Vue from 'nativescript-vue'
 import App from './components/App'
 import VueDevtools from 'nativescript-vue-devtools'
+require( "nativescript-platform-css" )
 
 
 if(TNS_ENV !== 'production') {
